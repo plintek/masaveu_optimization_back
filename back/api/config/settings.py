@@ -54,11 +54,6 @@ INSTALLED_APPS = [
     'users',
     'utils',
     'config',
-    'captures',
-    'equipments',
-    'notifications',
-    'settings',
-
 ]
 
 MIDDLEWARE = [

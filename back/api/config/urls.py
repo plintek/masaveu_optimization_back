@@ -54,10 +54,6 @@ urlpatterns = [
                                            namespace='password_reset')),
     path('api/v1/users/', include('users.urls')),
     path('api/v1/utils/', include('utils.urls')),
-    path('api/v1/captures/', include('captures.urls')),
-    path('api/v1/equipments/', include('equipments.urls')),
-    path('api/v1/notifications/', include('notifications.urls')),
-    path('api/v1/settings/', include('settings.urls')),
 
 ] + static(STATIC_URL, document_root=STATIC_ROOT)
 

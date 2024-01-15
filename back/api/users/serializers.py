@@ -16,8 +16,3 @@ class UserDetailedSerializer(serializers.HyperlinkedModelSerializer):
                   'is_active', 'is_staff', 'is_superuser', 'password', 'role']
 
 
-class UserOnCaptureSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ["id", 'username', 'email', 'first_name', 'last_name', 'profile_picture',
-                  'capture_count', 'following_count', "followers_count", 'level', 'private',]
