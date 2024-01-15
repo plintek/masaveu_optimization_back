@@ -1,0 +1,16 @@
+[flake8]
+
+########## VERBOSITY ##########
+# Increase the verbosity of Flake8’s output.
+verbose = 1
+# Decrease the verbosity of Flake8’s output.
+quiet = 0
+
+########## OPTIONS ##########
+# Set the maximum length that any line (with some exceptions) may be.
+max-line-length = 100
+# Set the maximum allowed McCabe complexity value for a block of code.
+max-complexity = 10
+
+########## DJANGO ###########
+exclude = **/migrations/* , **/tests.py

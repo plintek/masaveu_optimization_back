@@ -1,0 +1,10 @@
+back/api/static/
+back/api/staticfiles/
+
+back/api/utils/migrations/
+
+back/api/mapLayers/migrations/
+
+back/api/frontendConfigurations/migrations/
+
+back/api/users/migrations/

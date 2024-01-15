@@ -1,0 +1,81 @@
+version: "3.3"
+
+volumes:
+    postgis-data:
+        driver: local
+    cache-data:
+        driver: local
+    static-data:
+        driver: local
+    media-data:
+        driver: local
+    api-data:
+        driver: local
+
+networks:
+    backend_network:
+        driver: bridge
+
+services:
+    backend:
+        container_name: backend-edge-django
+        build: ./back/api
+        ports:
+            - "8000"
+        dns:
+            - 8.8.8.8
+        depends_on:
+            - postgis
+            - redis
+        links:
+            - postgis
+            - redis
+        command: sh /api/init.server.dev.bash
+        volumes:
+            - ./back/api:/api
+            - ./back/api/staticfiles:/api/staticfiles
+            - ./back/api/media:/api/media
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        restart: on-failure
+        networks:
+            - backend_network
+
+    nginx:
+        container_name: nginx-edge-django
+        build: ./back/nginx
+        volumes:
+            - ./back/api/staticfiles:/api/staticfiles
+            - ./back/api/media:/api/media
+        ports:
+            - "8000:8000"
+        depends_on:
+            - backend
+        networks:
+            - backend_network
+
+    postgis:
+        container_name: postgis-edge-django
+        build: ./back/postgres
+        ports:
+            - "3232:5432"
+        volumes:
+            - postgis-data:/var/lib/postgresql
+        healthcheck:
+            test: "nc -z localhost 5432"
+            interval: 30s
+            timeout: 10s
+            retries: 5
+        networks:
+            - backend_network
+    redis:
+        container_name: redis-edge-django
+        image: redis:latest
+        restart: on-failure
+        command: redis-server --appendonly yes --requirepass "masaveuRedisXXYJK"
+        ports:
+            - "6379:6379"
+        volumes:
+            - cache-data:/data
+        networks:
+            - backend_network

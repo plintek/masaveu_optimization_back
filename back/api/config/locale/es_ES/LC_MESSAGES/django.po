@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-24 21:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: config/settings.py:180
+msgid "English"
+msgstr "Inglés"
+
+#: config/settings.py:181
+msgid "Spanish"
+msgstr "Español"
+
+#: delegations/models.py:5 sellingPoint/models.py:5 projects/models.py:8
+#: routes/models.py:5 routes/models.py:17
+msgid "name"
+msgstr "nombre"
+
+#: delegations/models.py:9
+msgid "delegation"
+msgstr "delegación"
+
+#: delegations/models.py:10
+msgid "delegations"
+msgstr "delegaciones"
+
+#: optimizations/models.py:5
+msgid "zone"
+msgstr "zona"
+
+#: optimizations/models.py:6
+msgid "work hours"
+msgstr "horas de trabajo"
+
+#: optimizations/models.py:7
+msgid "month visits"
+msgstr "visitas al mes"
+
+#: optimizations/models.py:8
+msgid "month kms per pax"
+msgstr "kilómetros mensuales por pax"
+
+#: optimizations/models.py:9
+msgid "diets per pax"
+msgstr "dietas por pax"
+
+#: optimizations/models.py:10
+msgid "overnights per month per pax"
+msgstr "noches por mes por pax"
+
+#: optimizations/models.py:11
+msgid "persons per route"
+msgstr "personas por ruta"
+
+#: optimizations/models.py:12
+msgid "daily visits"
+msgstr "visitas diarias"
+
+#: optimizations/models.py:13
+msgid "diet mean per month per pax"
+msgstr "dietas por mes por pax"
+
+#: optimizations/models.py:14
+msgid "visit time"
+msgstr "tiempo de visitas"
+
+#: optimizations/models.py:15
+msgid "tolls per month per pax"
+msgstr "peajes por mes por pax"
+
+#: optimizations/models.py:19
+msgid "optimization"
+msgstr "optimización"
+
+#: optimizations/models.py:20
+msgid "optimizations"
+msgstr "optimizaciones"
+
+#: sellingPoint/models.py:6
+msgid "province"
+msgstr "provincia"
+
+#: sellingPoint/models.py:7
+msgid "zip code"
+msgstr "código postal"
+
+#: sellingPoint/models.py:11
+msgid "selling point"
+msgstr "punto de venta"
+
+#: sellingPoint/models.py:12
+msgid "selling points"
+msgstr "puntos de venta"
+
+#: projects/models.py:6
+msgid "code"
+msgstr "código"
+
+#: projects/models.py:7
+msgid "status"
+msgstr "estado"
+
+#: projects/models.py:9
+msgid "project manager"
+msgstr "administrador de poryecto"
+
+#: projects/models.py:10
+msgid "startDate"
+msgstr "fecha de inicio"
+
+#: projects/models.py:11
+msgid "endDate"
+msgstr "fecha de fin"
+
+#: projects/models.py:12
+msgid "campaign"
+msgstr "campaña"
+
+#: projects/models.py:17
+msgid "project"
+msgstr "proyecto"
+
+#: projects/models.py:18
+msgid "projects"
+msgstr "proyectos"
+
+#: routes/models.py:6
+msgid "color"
+msgstr "color"
+
+#: routes/models.py:11
+msgid "route"
+msgstr "ruta"
+
+#: routes/models.py:12
+msgid "routes"
+msgstr "rutas"
+
+#: routes/models.py:18
+msgid "order"
+msgstr "orden"
+
+#: routes/models.py:19
+msgid "arrival time"
+msgstr "hora de llegada"
+
+#: routes/models.py:20
+msgid "departure time"
+msgstr "hora de salida"
+
+#: routes/models.py:25
+msgid "route item"
+msgstr "item de ruta"
+
+#: routes/models.py:26
+msgid "route items"
+msgstr "items de ruta"
+
+#: templates/email/user_reset_password.txt:1
+#, python-format
+msgid ""
+"Hola %(username)s\n"
+"\n"
+"Blabla blabla ignora esto si no lo has pedido blabla...."
+msgstr ""
+
+
+#: templates/email/user_reset_password.txt:9
+msgid "Muchas gracias....\n"
+msgstr ""
+
+#: templates/input_filter.html:3
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/input_filter.html:18
+msgid "Remove"
+msgstr ""
+
+#: users/models.py:39
+msgid "username"
+msgstr "usuario"
+
+#: users/models.py:40
+msgid "email address"
+msgstr "email"
+
+#: users/models.py:41
+msgid "first name"
+msgstr "nombre"
+
+#: users/models.py:42
+msgid "last name"
+msgstr "apellido"
+
+#: users/models.py:43
+msgid "date joined"
+msgstr "fecha de entrada"
+
+#: users/models.py:44
+msgid "active"
+msgstr "activo"
+
+#: users/models.py:45
+msgid "staff"
+msgstr "empleado"
+
+#: users/models.py:46
+msgid "superuser"
+msgstr "superusuario"
+
+#: users/models.py:47
+msgid "password"
+msgstr "contraseña"
+
+#: users/models.py:54
+msgid "user"
+msgstr "usuario"
+
+#: users/models.py:55
+msgid "users"
+msgstr "usuarios"
