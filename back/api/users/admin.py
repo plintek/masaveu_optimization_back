@@ -50,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'is_active', 'is_staff',
+        fields = ('email', 'password', 'first_name', 'is_active',
                   'groups', 'user_permissions', )
 
     def clean_password(self):
@@ -69,8 +69,8 @@ class UserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     list_display = ('username', 'email', 'first_name',
-                    'is_staff', 'is_superuser', )
-    list_filter = ('is_staff',)
+                    'is_superuser', )
+
     fieldsets = (
         (None, {'fields': ('email', 'password', 'role')}),
         ('Personal info', {'fields': ('first_name',)}),
