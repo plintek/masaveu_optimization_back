@@ -72,7 +72,7 @@ services:
         container_name: redis-edge-django
         image: redis:latest
         restart: on-failure
-        command: redis-server --appendonly yes --requirepass "masaveuRedisXXYJK"
+        command: redis-server --appendonly yes
         ports:
             - "6379:6379"
         volumes:
