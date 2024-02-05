@@ -13,7 +13,7 @@ class Command(BaseCommand):
             print("Creating superuser...", end=" ", flush=True)
             username = os.environ.get("API_ADMIN_USER")
             psw = os.environ.get("API_ADMIN_PASSWORD")
-            User.objects.create_superuser(username, 'admin@plintek.com', psw)
+            User.objects.create_superuser(username, 'admin@dotgiscorp.com', psw)
             print("OK", flush=True)
         except Exception as ex:
             print(f"ERROR - {ex}", flush=True)

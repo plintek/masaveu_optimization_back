@@ -15,8 +15,7 @@ class UserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     passwordComprobation = forms.CharField(
         label='Repetir contraseña', widget=forms.PasswordInput)
-    role = forms.ChoiceField(
-        choices=rolesManager.getRolesList(),  label="Rol del usuario")
+    role = forms.ChoiceField(choices=rolesManager.getRolesList(),  label="Rol del usuario")
 
     class Meta:
         model = User
@@ -45,12 +44,11 @@ class UserChangeForm(forms.ModelForm):
     password hash display field.
     """
     password = ReadOnlyPasswordHashField(label="Contraseña")
-    role = forms.ChoiceField(
-        choices=rolesManager.getRolesList(),  label="Rol del usuario")
+    role = forms.ChoiceField(choices=rolesManager.getRolesList(),  label="Rol del usuario")
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'is_active',
+        fields = ('email', 'password', 'first_name', 'is_active', 'is_staff',
                   'groups', 'user_permissions', )
 
     def clean_password(self):
@@ -68,9 +66,8 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('username', 'email', 'first_name',
-                    'is_superuser', )
-
+    list_display = ('username', 'email', 'first_name', 'is_staff', 'is_superuser', )
+    list_filter = ('is_staff',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'role')}),
         ('Personal info', {'fields': ('first_name',)}),
