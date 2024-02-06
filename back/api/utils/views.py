@@ -37,29 +37,80 @@ class CacheUtility:
 class ExecuteAlgorithmApiView(APIView):
 
     def post(self, request):
-        try:
-            vehicles = []
-            orders = []
+        # try:
+        json_data = []
+        with open("/api/utils/data.json", "r") as file:
+            json_data = json.load(file)
 
-            with open("/api/utils/orders.json", "r") as file:
-                orders = json.load(file)
+        for i in range(len(json_data["destinations"])):
+            destination = json_data["destinations"][i]
+            if "id" in destination:
+                del destination["id"]
+            if "isNew" in destination:
+                del destination["isNew"]
 
-            with open("/api/utils/vehicles.json", "r") as file:
-                vehicles = json.load(file)
+        for i in range(len(json_data["pexs"])):
+            pex = json_data["pexs"][i]
+            if "id" in pex:
+                del pex["id"]
+            if "isNew" in pex:
+                del pex["isNew"]
 
-            data = {
-                "input": request.data,
-                "orders": orders,
-                "vehicles": vehicles
-            }
-            url = "http://host.docker.internal:5757/"
+        for i in range(len(json_data["orders"])):
+            order = json_data["orders"][i]
+            if "id" in order:
+                del order["id"]
+            if "isNew" in order:
+                del order["isNew"]
 
-            response = requests.post(url, json=data)
-            response_data = response.json()
-            return Response(response_data, status=status.HTTP_200_OK)
-        except Exception as e:
-            logger.error("Error in ExecuteAlgorithmApiView: " + str(e))
-            return Response({"error": "Error in ExecuteAlgorithmApiView"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            pex_id = json_data["orders"][i]["origin"]
+            selected_pex = None
+            for pex in json_data["pexs"]:
+                if pex["uid"] == pex_id:
+                    selected_pex = pex
+                    break
+            destination_id = json_data["orders"][i]["destination"]
+            selected_destination = None
+            for destination in json_data["destinations"]:
+                if destination["uid"] == destination_id:
+                    selected_destination = destination
+                    break
+
+            json_data["orders"][i]["origin"] = selected_pex
+            json_data["orders"][i]["destination"] = selected_destination
+
+        for i in range(len(json_data["vehicles"])):
+            vehicle = json_data["vehicles"][i]
+            if "id" in vehicle:
+                del vehicle["id"]
+            if "isNew" in vehicle:
+                del vehicle["isNew"]
+
+            if "geolocation_lat" in vehicle and "geolocation_lon" in vehicle:
+                vehicle["geolocation"] = {
+                    "lat": vehicle["geolocation_lat"],
+                    "lon": vehicle["geolocation_lon"]
+                }
+            if "geolocation_lat" in vehicle:
+                del vehicle["geolocation_lat"]
+            if "geolocation_lon" in vehicle:
+                del vehicle["geolocation_lon"]
+
+            json_data["vehicles"][i] = vehicle
+
+        data = {
+            "input": request.data,
+            **json_data
+        }
+
+        url = "http://host.docker.internal:5757/"
+
+        response = requests.post(url, json=data)
+        response_data = response.json()
+        return Response(response_data, status=status.HTTP_200_OK)
+        # except Exception as e:
+        #     logger.error("Error in ExecuteAlgorithmApiView: " + str(e))
+        #     return Response({"error": "Error in ExecuteAlgorithmApiView"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class SaveDataApiView(APIView):
@@ -67,16 +118,9 @@ class SaveDataApiView(APIView):
     def post(self, request):
         try:
             data = request.data
-            orders = data.get("orders")
-            vehicles = data.get("vehicles")
-            # Check if data is valid json
-            if not isinstance(orders, list) or not isinstance(vehicles, list):
-                return Response({"error": "Invalid data"}, status=status.HTTP_400_BAD_REQUEST)
-            with open("/api/utils/orders.json", "w") as file:
-                json.dump(orders, file)
+            with open("/api/utils/data.json", "w") as file:
+                json.dump(data, file)
 
-            with open("/api/utils/vehicles.json", "w") as file:
-                json.dump(vehicles, file)
             return Response({"message": "File saved succesfully"}, status=status.HTTP_200_OK)
         except Exception as e:
             logger.error("Error in ExecuteAlgorithmApiView: " + str(e))
@@ -87,16 +131,11 @@ class LoadDataApiView(APIView):
 
     def get(self, request):
         try:
-            vehicles = []
-            orders = []
+            json_data = []
+            with open("/api/utils/data.json", "r") as file:
+                json_data = json.load(file)
 
-            with open("/api/utils/orders.json", "r") as file:
-                orders = json.load(file)
-
-            with open("/api/utils/vehicles.json", "r") as file:
-                vehicles = json.load(file)
-
-            return Response({"orders": orders, "vehicles": vehicles}, status=status.HTTP_200_OK)
+            return Response(json_data, status=status.HTTP_200_OK)
         except Exception as e:
             logger.error("Error in ExecuteAlgorithmApiView: " + str(e))
             return Response({"error": "Error in ExecuteAlgorithmApiView"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
