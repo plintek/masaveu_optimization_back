@@ -26,10 +26,8 @@ services:
             - 8.8.8.8
         depends_on:
             - postgis
-            - redis
         links:
             - postgis
-            - redis
         command: sh /api/init.server.dev.bash
         volumes:
             - ./back/api:/api
