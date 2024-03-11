@@ -30,7 +30,7 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000',
-                        "http://localhost:8000", "http://localhost"]
+                        "http://localhost:8000", "http://localhost", "http://devctv.dotgiscorp.com"]
 
 # Forward request to HTTPS
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -208,6 +208,7 @@ LOCALE_PATHS = (
 CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     'http://localhost:8080',
+    'http://devctv.dotgiscorp.com'
 ]
 CORS_ALLOW_CREDENTIALS = True
 
